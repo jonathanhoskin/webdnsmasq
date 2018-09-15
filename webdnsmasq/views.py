@@ -20,16 +20,26 @@ import os
 
 # all hosts will be resolved to the stated IP
 # please read the dnsmasq man page for /address entry
-addresses = {
-    'facebook.com': '127.0.0.1'
-}
+addresses = {}
 
-# all hosts will be resolved by the DNS server behind the stated IP 
+# all hosts will be resolved by the DNS server behind the stated IP
 # pleas read the dnsmasq man page for /server entry
 servers = {
-    'google.com': '8.8.8.8'
+    'facebook.com': '',
+    'google.com': '',
+    'instagram.com': '',
+    'appspot.com': '',
+    'snapchat.com': '',
+    'slither.io': '',
+    'diep.io': '',
+    'kizi.com': '',
+    'friv.com': '',
+    'roblox.com': '',
+    'ea.com': '',
+    'origin.com': '',
+    'epicgames.com': '',
+    'spotify.com': '',
 }
-
 
 addressesDict = dict.fromkeys(addresses, True)
 serversDict = dict.fromkeys(servers,True)
@@ -40,7 +50,7 @@ def my_view(request):
             'addresses': addressesDict,
             'servers': serversDict}
 
-# View for save - no site will be generated      
+# View for save - no site will be generated
 @view_config(route_name='save')
 def save_view(request):
     global addressesDict, serversDict
@@ -60,11 +70,11 @@ def save_view(request):
             serversDict[param] = True
             file.write("server=/" + param + "/" + servers[param] + "\n")
         else:
-            serversDict[param] = False 
+            serversDict[param] = False
 
     file.close()
     #notifyDnsmasq()
-    return HTTPFound(location='/') 
+    return HTTPFound(location='/')
 
 def notifyDnsmasq():
     fifo = open("push.fifo","w")
