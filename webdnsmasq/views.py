@@ -38,7 +38,9 @@ servers = {
     'ea.com': '',
     'origin.com': '',
     'epicgames.com': '',
-    'spotify.com': ''
+    'spotify.com': '',
+    'youtube.com': '',
+    'netflix.com': ''
 }
 
 addressesDict = dict.fromkeys(addresses, True)
