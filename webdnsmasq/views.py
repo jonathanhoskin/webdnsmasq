@@ -24,11 +24,11 @@ import collections
 # pleas read the dnsmasq man page for /server entry
 servers = [
     ('Facebook', {
-        'domains': [ 'facebook.com', 'fbcdn.com' ],
+        'domains': [ 'facebook.com', 'facebook.net', 'fbcdn.com', 'fbcdn.net' ],
         'blocked': False
     }),
     ('Google', {
-        'domains': [ 'google.com' ],
+        'domains': [ 'google.com', 'google.co.nz' ],
         'blocked': False
     }),
     ('Instagram', {
