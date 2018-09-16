@@ -97,7 +97,7 @@ def save_view(request):
     for param in serversDict:
         if param in request.params:
             serversDict[param]['blocked'] = True
-            for domain in serversDict[param]['domains']
+            for domain in serversDict[param]['domains']:
                 file.write('server=/' + domain + "/\n")
         else:
             serversDict[param]['blocked'] = False
