@@ -75,10 +75,10 @@ def save_view(request):
             serversDict[param] = False
 
     file.close()
-    #notifyDnsmasq()
+    notifyDnsmasq()
     return HTTPFound(location='/')
 
 def notifyDnsmasq():
-    fifo = open("push.fifo","w")
+    fifo = open("../../reloader.fifo","w")
     fifo.write("changed list\n")
     fifo.close()
