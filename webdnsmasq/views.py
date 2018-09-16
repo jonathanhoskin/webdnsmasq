@@ -22,48 +22,62 @@ import collections
 # all hosts will be resolved by the DNS server behind the stated IP
 # pleas read the dnsmasq man page for /server entry
 servers = [
-    ('Facebook':
+    ('Facebook', {
         'domains': [ 'facebook.com', 'fbcdn.com' ],
-        'blocked': False),
-    ('Google':
+        'blocked': False
+    }),
+    ('Google', {
         'domains': [ 'google.com' ],
-        'blocked': False),
-    ('Instagram':
+        'blocked': False
+    }),
+    ('Instagram', {
         'domains': [ 'instagram.com' ],
-        'blocked': False),
-    ('Snapchat':
+        'blocked': False
+    }),
+    ('Snapchat', {
         'domains': [ 'snapchat.com', 'appspot.com' ],
-        'blocked': False),
-    ('Spotify':
+        'blocked': False
+    }),
+    ('Spotify', {
         'domains': [ 'spotify.com' ],
-        'blocked': False),
-    ('Youtube':
+        'blocked': False
+    }),
+    ('Youtube', {
         'domains': [ 'youtube.com' ],
-        'blocked': False),
-    ('Netflix':
+        'blocked': False
+    }),
+    ('Netflix', {
         'domains': [ 'netflix.com' ],
-        'blocked': False),
-    ('Fortnite':
+        'blocked': False
+    }),
+    ('Fortnite', {
         'domains': [ 'epicgames.com' ],
-        'blocked': True),
-    ('Sims, FIFA, EA, Origin':
+        'blocked': True
+    }),
+    ('Sims, FIFA, EA, Origin', {
         'domains': [ 'ea.com', 'origin.com' ],
-        'blocked': True),
-    ('Roblox':
+        'blocked': True
+    }),
+    ('Roblox', {
         'domains': [ 'roblox.com' ],
-        'blocked': True),
-    ('Slither.io':
+        'blocked': True
+    }),
+    ('Slither.io', {
         'domains': [ 'slither.io' ],
-        'blocked': True),
-    ('Diep.io':
+        'blocked': True
+    }),
+    ('Diep.io', {
         'domains': [ 'diep.io' ],
-        'blocked': True),
-    ('Kizi':
+        'blocked': True
+    }),
+    ('Kizi', {
         'domains': [ 'kizi.com' ],
-        'blocked': True),
-    ('Friv':
+        'blocked': True
+    }),
+    ('Friv', {
         'domains': [ 'friv.com' ],
-        'blocked': True),
+        'blocked': True
+    }),
 ]
 
 serversDict = collections.OrderedDict(servers)
