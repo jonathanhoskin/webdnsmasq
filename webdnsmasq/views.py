@@ -17,68 +17,82 @@
 from pyramid.view import view_config
 from pyramid.httpexceptions import HTTPFound
 import os
-
-# all hosts will be resolved to the stated IP
-# please read the dnsmasq man page for /address entry
-addresses = {}
+import collections
 
 # all hosts will be resolved by the DNS server behind the stated IP
 # pleas read the dnsmasq man page for /server entry
-servers = {
-    'facebook.com': '',
-    'google.com': '',
-    'instagram.com': '',
-    'appspot.com': '',
-    'snapchat.com': '',
-    'slither.io': '',
-    'diep.io': '',
-    'kizi.com': '',
-    'friv.com': '',
-    'roblox.com': '',
-    'ea.com': '',
-    'origin.com': '',
-    'epicgames.com': '',
-    'spotify.com': '',
-    'youtube.com': '',
-    'netflix.com': ''
-}
+servers = [
+    ('Facebook':
+        'domains': [ 'facebook.com', 'fbcdn.com' ],
+        'blocked': False),
+    ('Google':
+        'domains': [ 'google.com' ],
+        'blocked': False),
+    ('Instagram':
+        'domains': [ 'instagram.com' ],
+        'blocked': False),
+    ('Snapchat':
+        'domains': [ 'snapchat.com', 'appspot.com' ],
+        'blocked': False),
+    ('Spotify':
+        'domains': [ 'spotify.com' ],
+        'blocked': False),
+    ('Youtube':
+        'domains': [ 'youtube.com' ],
+        'blocked': False),
+    ('Netflix':
+        'domains': [ 'netflix.com' ],
+        'blocked': False),
+    ('Fortnite':
+        'domains': [ 'epicgames.com' ],
+        'blocked': True),
+    ('Sims, FIFA, EA, Origin':
+        'domains': [ 'ea.com', 'origin.com' ],
+        'blocked': True),
+    ('Roblox':
+        'domains': [ 'roblox.com' ],
+        'blocked': True),
+    ('Slither.io':
+        'domains': [ 'slither.io' ],
+        'blocked': True),
+    ('Diep.io':
+        'domains': [ 'diep.io' ],
+        'blocked': True),
+    ('Kizi':
+        'domains': [ 'kizi.com' ],
+        'blocked': True),
+    ('Friv':
+        'domains': [ 'friv.com' ],
+        'blocked': True),
+]
 
-addressesDict = dict.fromkeys(addresses, True)
-serversDict = dict.fromkeys(servers,True)
+serversDict = collections.OrderedDict(servers)
 
 @view_config(route_name='home', renderer='home.mako')
 def my_view(request):
     return {'project': 'webdnsmasq',
-            'addresses': addressesDict,
             'servers': serversDict}
 
 # View for save - no site will be generated
 @view_config(route_name='save')
 def save_view(request):
-    global addressesDict, serversDict
+    global serversDict
 
-    file = open("address.conf","w")
-
-    for param in addressesDict:
-
-        if param in request.params:
-            addressesDict[param] = True
-            file.write("address=/" + param + "/" + addresses[param] + "\n")
-        else:
-            addressesDict[param] = False
+    file = open('webdnsmasq-blocked.conf','w')
 
     for param in serversDict:
         if param in request.params:
-            serversDict[param] = True
-            file.write("server=/" + param + "/" + servers[param] + "\n")
+            serversDict[param]['blocked'] = True
+            for domain in servers[param]['domains']
+                file.write('server=/' + domain + "/\n")
         else:
-            serversDict[param] = False
+            serversDict[param]['blocked'] = False
 
     file.close()
     notifyDnsmasq()
     return HTTPFound(location='/')
 
 def notifyDnsmasq():
-    fifo = open("../../reloader.fifo","w")
+    fifo = open('../../reloader.fifo','w')
     fifo.write("changed list\n")
     fifo.close()

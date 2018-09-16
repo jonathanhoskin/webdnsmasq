@@ -19,19 +19,11 @@
           </div>
           <div class="panel-body">
             <form action="save" method="POST" class="form-horizontal">
-              % for item in addresses:
-                <div class="form-group">
-                  <label for="${item}" class="col-xs-8">${item}</label>
-                  <div class="col-xs-4">
-                    <input data-toggle="toggle" ${'checked' if addresses[item] else ''} type="checkbox" id="${item}" name="${item}" data-onstyle="success">
-                  </div>
-                </div>
-              % endfor
               % for item in servers:
                 <div class="form-group">
                   <label for="${item}" class="col-xs-8">${item}</label>
                   <div class="col-xs-4">
-                    <input data-toggle="toggle" ${'checked' if servers[item] else ''} type="checkbox" id="${item}" name="${item}" data-onstyle="danger">
+                    <input data-toggle="toggle" ${'checked' if servers[item]['blocked'] else ''} type="checkbox" id="${item}" name="${item}" data-onstyle="danger">
                   </div>
                 </div>
               % endfor
