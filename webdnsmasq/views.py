@@ -15,6 +15,7 @@
 # along with this program.  If not, see http://www.gnu.org/licenses/.
 
 from pyramid.view import view_config
+from pyramid.response import Response
 from pyramid.httpexceptions import HTTPFound
 import os
 import collections
@@ -104,7 +105,11 @@ def save_view(request):
 
     file.close()
     notifyDnsmasq()
-    return HTTPFound(location='/')
+
+    if request.is_xhr:
+        return Response()
+    else:
+        return HTTPFound(location='/')
 
 def notifyDnsmasq():
     fifo = open('../../reloader.fifo','w')

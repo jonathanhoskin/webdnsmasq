@@ -124,7 +124,7 @@
 	<br>
 	  <div class=container>
 
-      <div class="col-6 offset-md-3">
+      <div class="col-12 col-lg-6 offset-lg-3">
         <div class="card mb-4">
           <div class="card-header">
             <h3>Select sites to block</h3>
@@ -134,10 +134,10 @@
             <div class="card-body">
               % for item in servers:
                 <div class="form-group form-row">
-                  <div class="col-1 pt-2">
-                    <img src="https://www.${servers[item]['domains'][0]}/favicon.ico" alt="${item}" class="img-fluid" data-site="${item}"/>
+                  <div class="col-1 col-sm-1 pt-2">
+                    <img src="https://www.${servers[item]['domains'][0]}/apple-touch-icon-precomposed.png" alt="${item}" class="img-fluid" data-site="${item}" data-favicon="https://www.${servers[item]['domains'][0]}/favicon.ico"/>
                   </div>
-                  <div class="col-9">
+                  <div class="col-8 col-sm-9">
                     <div class="lead">
                       ${item}
                     </div>
@@ -145,10 +145,10 @@
                       ${", ".join(servers[item]['domains'])}
                     </small>
                   </div>
-                  <div class="col-2 pt-2 float-right">
+                  <div class="col-3 col-sm-2 pt-2">
                     <span class="switch">
                       <input class="switch" data-toggle="toggle" ${'checked' if servers[item]['blocked'] else ''} type="checkbox" id="${item}" name="${item}" data-onstyle="danger" aria-describedby="${item}HelpBlock">
-                      <label for="${item}"> </label>
+                      <label for="${item}"></label>
                     </span>
                   </div>
                 </div>
@@ -160,23 +160,29 @@
 	  </div>
 
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
       $('.img-fluid').on('error', function() {
         var text = $(this).data('site');
-        var placeholder_url = 'https://via.placeholder.com/250/ffffffff/00000000?text=' + text;
-        if (this.src != placeholder_url) {
-          this.src = placeholder_url;
+        var faviconUrl = $(this).data('favicon');
+        var placeholderUrl = 'https://via.placeholder.com/250/ffffffff/00000000?text=' + text;
+
+        if (this.src != faviconUrl && this.src != placeholderUrl) {
+          this.src = faviconUrl;
+        } else if (this.src == faviconUrl) {
+          this.src = placeholderUrl;
         }
       });
     </script>
 
     <script type="text/javascript">
-      $('#block-form input[type="checkbox"]').change(function() {
-        $('#block-form').submit();
+      $(document).ready(function() {
+        $('#block-form input[type="checkbox"]').change(function() {
+          $.post('save', $('#block-form').serialize());
+        });
       });
     </script>
   </body>
