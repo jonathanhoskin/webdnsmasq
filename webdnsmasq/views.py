@@ -25,19 +25,21 @@ import collections
 servers = [
     ('Facebook', {
         'domains': [ 'facebook.com', 'facebook.net', 'fbcdn.com', 'fbcdn.net' ],
-        'blocked': False
+        'blocked': False,
     }),
     ('Google', {
         'domains': [ 'google.com', 'google.co.nz' ],
-        'blocked': False
+        'blocked': False,
+        'icon': 'https://upload.wikimedia.org/wikipedia/commons/5/53/Google_%22G%22_Logo.svg'
     }),
     ('Instagram', {
         'domains': [ 'instagram.com' ],
-        'blocked': False
+        'blocked': False,
     }),
     ('Snapchat', {
         'domains': [ 'snapchat.com', 'appspot.com' ],
-        'blocked': False
+        'blocked': False,
+        'icon': 'https://upload.wikimedia.org/wikipedia/en/thumb/c/c4/Snapchat_logo.svg/300px-Snapchat_logo.svg.png'
     }),
     ('Spotify', {
         'domains': [ 'spotify.com' ],
@@ -45,7 +47,8 @@ servers = [
     }),
     ('Youtube', {
         'domains': [ 'youtube.com' ],
-        'blocked': False
+        'blocked': False,
+        'icon': 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/96/YouTube_social_red_squircle_%282017%29.svg/300px-YouTube_social_red_squircle_%282017%29.svg.png'
     }),
     ('Netflix', {
         'domains': [ 'netflix.com' ],
@@ -53,19 +56,23 @@ servers = [
     }),
     ('Fortnite', {
         'domains': [ 'epicgames.com' ],
-        'blocked': True
+        'blocked': True,
+        'icon': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Fortnite.png/320px-Fortnite.png'
     }),
     ('Sims, FIFA, EA, Origin', {
         'domains': [ 'ea.com', 'origin.com' ],
-        'blocked': True
+        'blocked': True,
+        'icon': 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Electronic-Arts-Logo.svg/240px-Electronic-Arts-Logo.svg.png'
     }),
     ('Roblox', {
         'domains': [ 'roblox.com' ],
-        'blocked': True
+        'blocked': True,
+        'icon': 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Roblox_logo.svg/320px-Roblox_logo.svg.png'
     }),
     ('Slither.io', {
         'domains': [ 'slither.io' ],
-        'blocked': True
+        'blocked': True,
+        'icon': 'https://upload.wikimedia.org/wikipedia/en/5/50/Slither.png'
     }),
     ('Diep.io', {
         'domains': [ 'diep.io' ],

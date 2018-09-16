@@ -135,7 +135,11 @@
               % for item in servers:
                 <div class="form-group form-row">
                   <div class="col-1 col-sm-1 pt-2">
-                    <img src="https://www.${servers[item]['domains'][0]}/apple-touch-icon-precomposed.png" alt="${item}" class="img-fluid" data-site="${item}" data-favicon="https://www.${servers[item]['domains'][0]}/favicon.ico"/>
+                    % if 'icon' in servers[item]:
+                      <img src="${servers[item]['icon']}" alt="${item}" class="img-fluid"/>
+                    % else:
+                      <img src="https://www.${servers[item]['domains'][0]}/apple-touch-icon-precomposed.png" alt="${item}" class="img-fluid img-fallback" data-site="${item}" data-favicon="https://www.${servers[item]['domains'][0]}/favicon.ico"/>
+                    % endif
                   </div>
                   <div class="col-8 col-sm-9">
                     <div class="lead">
@@ -165,7 +169,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-      $('.img-fluid').on('error', function() {
+      $('.img-fallback').on('error', function() {
         var text = $(this).data('site');
         var faviconUrl = $(this).data('favicon');
         var placeholderUrl = 'https://via.placeholder.com/250/ffffffff/00000000?text=' + text;
