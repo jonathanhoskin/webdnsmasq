@@ -1,0 +1,5 @@
+webdnsmasq-blocked.conf
+webdnsmasq.egg-info/*
+webdnsmasq/tests.pyc
+webdnsmasq/views.pyc
+webdnsmasq/__init__.pyc
