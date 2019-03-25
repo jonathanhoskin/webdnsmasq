@@ -59,6 +59,11 @@ servers = [
         'blocked': True,
         'icon': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Fortnite.png/320px-Fortnite.png'
     }),
+    ('PUBG', {
+        'domains': [ 'pubg.com', 'pubgmobile.com' ],
+        'blocked': True,
+        'icon': 'https://upload.wikimedia.org/wikipedia/en/3/3d/PlayerUnknown%27s_Battlegrounds_Steam_Logo.jpg'
+    }),
     ('Sims, FIFA, EA, Origin', {
         'domains': [ 'ea.com', 'origin.com' ],
         'blocked': True,
