@@ -60,7 +60,7 @@ servers = [
         'icon': 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/36/Fortnite.png/320px-Fortnite.png'
     }),
     ('PUBG', {
-        'domains': [ 'pubg.com', 'pubgmobile.com', 'igamecj.com', 'gcloudcs.com', 'qq.com', 'tencent-cloud.net', 'proximabeta.com' ],
+        'domains': [ 'pubg.com', 'pubgmobile.com', 'igamecj.com', 'gcloudcs.com', 'qq.com', 'tencent-cloud.net', 'proximabeta.com', 'helpshift.com' ],
         'blocked': True,
         'icon': 'https://upload.wikimedia.org/wikipedia/en/3/3d/PlayerUnknown%27s_Battlegrounds_Steam_Logo.jpg'
     }),
